@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Arslan Atakhanov</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        //EmailJS
+        emailjs.init('Pjh3ezhYItYfDWHje');
+    </script>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="https://i.pinimg.com/736x/47/c9/f2/47c9f2167790488c572370d1955dfc17.jpg" alt="Arslan Logo" class="logo-img">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="https://drive.google.com/file/d/1ferPlaVECYGsL1U_Shy3Cnna5C1FDaPw/view?usp=sharing" target="_blank">Resume</a></li>
+                <li><a href="https://github.com/arslan01000" target="_blank">GitHub</a></li>
+            </ul>
+            <button id="theme-toggle" class="theme-toggle-btn">🌙</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="contact">
+            <h1>Contact Me</h1>
+            <form id="contact-form" class="contact-form">
+                <div class="input-container">
+                    <label for="from_name">Your Name</label>
+                    <input type="text" id="from_name" name="from_name" placeholder="Enter your name" required>
+                </div>
+                <div class="input-container">
+                    <label for="from_email">Your Email</label>
+                    <input type="email" id="from_email" name="from_email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-container">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Arslan Atakhanov</p>
+            <p>Icons and images sourced from:</p>
+            <ul class="footer-links">
+                <li><a href="https://commons.wikimedia.org/" target="_blank">Wikimedia Commons</a></li>
+                <li><a href="https://www.google.com/" target="_blank">Google</a></li>
+                <li><a href="https://pin.it/3grmNwG40" target="_blank">Pinterest</a></li>
+                <li>Other sources with no intent to infringe copyright.</li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        // theme toggle func
+        const themeToggleButton = document.getElementById('theme-toggle');
+        const body = document.body;
+        const header = document.querySelector('header');
+        const footer = document.querySelector('footer');
+        const links = document.querySelectorAll('a');
+
+        themeToggleButton.addEventListener('click', () => {
+            
+            body.classList.toggle('dark-theme');
+            header.classList.toggle('dark-theme');
+            footer.classList.toggle('dark-theme');
+            links.forEach(link => link.classList.toggle('dark-theme'));
+
+           
+            if (body.classList.contains('dark-theme')) {
+                themeToggleButton.textContent = '🌞'; 
+            } else {
+                themeToggleButton.textContent = '🌙'; 
+            }
+        });
+
+        // EmailJS
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            emailjs.sendForm('service_tc0du1d', 'template_pwmmak8', this)
+                .then(function() {
+                    alert('Message sent successfully!');
+                }, function(error) {
+                    alert('Failed to send the message. Please try again. Error: ' + JSON.stringify(error));
+                });
+        });
+    </script>
+</body>
+</html>
